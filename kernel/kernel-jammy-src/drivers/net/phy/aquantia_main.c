@@ -190,6 +190,12 @@
 #define MAC_ADDRESS_BYTE_4 4
 #define MAC_ADDRESS_BYTE_5 5
 
+/* PHY LED2 CONFIG*/
+#define VEND1_GLOBAL_LED2_REG                  0xC432
+/*PHY LED0 LED1 CONFIG*/
+#define VEND1_GLOBAL_LED0_REG			0xC430
+#define VEND1_GLOBAL_LED1_REG			0xC431
+
 struct aqr107_hw_stat {
 	const char *name;
 	int reg;
@@ -386,6 +392,20 @@ static int aqr_config_aneg(struct phy_device *phydev)
 	} else {
 		phydev_info(phydev, "No AQR phy_mode setting in DT\n");
 	}
+
+	/* Enable LED2 Controlled */
+       err = phy_write_mmd(phydev, MDIO_MMD_VEND1, VEND1_GLOBAL_LED2_REG, 0x000d);
+       if (err < 0)
+               return err;
+
+       /* Eable LED0 and LED1 Controlled */
+	err = phy_write_mmd(phydev, MDIO_MMD_VEND1, VEND1_GLOBAL_LED0_REG, 0x000c);
+	if (err < 0)
+                return err;
+
+	err = phy_write_mmd(phydev, MDIO_MMD_VEND1, VEND1_GLOBAL_LED1_REG, 0x008c);
+	if (err < 0)
+                return err;
 
 	return genphy_c45_check_and_restart_aneg(phydev, changed);
 }
