@@ -14,6 +14,7 @@
 	aliases {
 		serial0 = &tcu;
 		serial1 = &uarta;
+		serial3 = &uarte;
 	};
 
 	chosen {
@@ -23,6 +24,12 @@
 
 	bus@0 {
 		serial@3100000 {
+			compatible = "nvidia,tegra194-hsuart";
+			reset-names = "serial";
+			status = "okay";
+		};
+
+		serial@3140000 {
 			compatible = "nvidia,tegra194-hsuart";
 			reset-names = "serial";
 			status = "okay";
@@ -332,6 +339,14 @@
 			linux,input-type = <EV_KEY>;
 			linux,code = <KEY_SLEEP>;
 		};
+
+		sw_reset {
+                       label = "sw-reset";
+                       gpios = <&gpio TEGRA234_MAIN_GPIO(L, 3) GPIO_ACTIVE_LOW>;
+                       linux,code = <KEY_RESTART>;
+                       debounce-interval = <100>;
+               };
+
 	};
 
 	pwm-fan {
