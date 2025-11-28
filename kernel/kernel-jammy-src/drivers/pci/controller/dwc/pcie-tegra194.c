@@ -2205,9 +2205,13 @@ static int tegra_pcie_config_rp(struct tegra_pcie_dw *pcie)
 
 	pcie->link_state = tegra_pcie_dw_link_up(&pcie->pci);
 	if (!pcie->link_state) {
-		ret = -ENOMEDIUM;
-		goto fail_host_init;
+		//ret = -ENOMEDIUM;
+		//goto fail_host_init;
+		dev_err(dev, "Disabling PCIe power down\n");
+		ret = 0;
 	}
+
+	pcie->link_state = true;
 
 	name = devm_kasprintf(dev, GFP_KERNEL, "%pOFP", dev->of_node);
 	if (!name) {

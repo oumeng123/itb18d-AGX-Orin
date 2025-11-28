@@ -280,6 +280,12 @@
 			phy-names = "p2u-0", "p2u-1", "p2u-2", "p2u-3";
 		};
 
+		pcie@14180000 {
+			status = "okay";
+			phys = <&p2u_hsio_0>;
+			phy-names = "p2u-0";
+		};
+
 		pcie@141a0000 {
 			status = "okay";
 
