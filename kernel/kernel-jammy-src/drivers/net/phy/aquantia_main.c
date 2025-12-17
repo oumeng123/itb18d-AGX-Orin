@@ -399,7 +399,7 @@ static int aqr_config_aneg(struct phy_device *phydev)
                return err;
 
        /* Eable LED0 and LED1 Controlled */
-	err = phy_write_mmd(phydev, MDIO_MMD_VEND1, VEND1_GLOBAL_LED0_REG, 0x000c);
+	err = phy_write_mmd(phydev, MDIO_MMD_VEND1, VEND1_GLOBAL_LED0_REG, 0x000f);
 	if (err < 0)
                 return err;
 

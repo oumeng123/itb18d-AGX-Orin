@@ -58,11 +58,13 @@
 		};
 
 		mgbe0: ethernet@6800000 {
-			nvidia,mac-addr-idx = <0>;
+			nvidia,mac-addr-idx = <1>;
+			nvidia,uphy-gbe-mode = <1>;
 			nvidia,max-platform-mtu = <16383>;
 			/* 1=enable, 0=disable */
-			nvidia,pause_frames = <1>;
+			nvidia,pause_frames = <0>;
 			phy-handle = <&mgbe0_aqr113c_phy>;
+			phy-mode = "10gbase-r";
 			/* 0:XFI 10G, 1:XFI 5G, 2:USXGMII 10G, 3:USXGMII 5G */
 			nvidia,phy-iface-mode = <0>;
 			nvidia,phy-reset-gpio = <&gpio TEGRA234_MAIN_GPIO(Y, 1) 0>;
