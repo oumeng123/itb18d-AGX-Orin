@@ -10,6 +10,7 @@
 #include "nv-soc/tegra234-soc-camera.dtsi"
 #include "tegra234-p3737-0000.dtsi"
 #include "tegra234-dcb-p3737-0000-p3701-0000.dtsi"
+#include "tegra234-dcb-p3701-0000-a02-p3737-0000-a01-hdmi-4-ga5.0.2.dtsi"
 
 / {
 	aliases {
@@ -328,5 +329,6 @@
 
 	display@13800000 {
 		status = "okay";
+		os_gpio_hotplug_a = <&gpio TEGRA234_MAIN_GPIO(M, 0) GPIO_ACTIVE_HIGH>;
 	};
 };
